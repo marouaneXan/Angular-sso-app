@@ -1,15 +1,16 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
+import { envirenment } from 'src/envirenment';
 
 export const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
-  issuer: 'https://idsvr4.azurewebsites.net',
+  issuer: envirenment.keycloak.issuer,
 
   // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin + '/index.html',
+  redirectUri: envirenment.keycloak.redirectUri,
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
-  clientId: 'spa',
+  clientId: envirenment.keycloak.clientId,
 
   // Just needed if your auth server demands a secret. In general, this
   // is a sign that the auth server is not configured with SPAs in mind
@@ -23,7 +24,8 @@ export const authCodeFlowConfig: AuthConfig = {
   // The first four are defined by OIDC.
   // Important: Request offline_access to get a refresh token
   // The api scope is a usecase specific one
-  scope: 'openid profile email offline_access api',
+  scope: envirenment.keycloak.scope,
+  requireHttps: false,
 
   showDebugInformation: true,
 };
