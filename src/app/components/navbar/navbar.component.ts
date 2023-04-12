@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc'
 import { authCodeFlowConfig } from 'src/app/sso-config';
 
@@ -9,7 +10,7 @@ import { authCodeFlowConfig } from 'src/app/sso-config';
 })
 export class NavbarComponent implements OnInit {
   name: string = ''
-  constructor(private oauthService: OAuthService) { }
+  constructor(private oauthService: OAuthService,private router:Router) { }
   ngOnInit(): void {
     this.configureSSO()
     const userClaims: any = this.oauthService.getIdentityClaims()
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   }
   login() {
     this.oauthService.initCodeFlow()
+    this.router.navigateByUrl('home')
   }
   logout() {
     this.oauthService.logOut()
