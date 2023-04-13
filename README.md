@@ -31,4 +31,3 @@
     </ul>
     <h2>Contributing</h2>
     <p>Instructions on how to contribute to the project. This should include any guidelines for code style, commit messages, etc.</p>
-    <h2>License</h2>
